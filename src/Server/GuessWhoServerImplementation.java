@@ -125,9 +125,7 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                     retadores = retadores + "," + games.get(i).getJugador1();
                 }
             }
-        }      
-        
-        
+        }    
         return retadores;
     }
 
@@ -138,16 +136,34 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
         if (respuesta.equals("Aceptar")) {
             for (int i = 0; i < games.size(); i++) {
                 // si la partida es un reto
+                if(!(games.get(i).getEstado().equals("Activa")) &&
+                        (games.get(i).getJugador1().equals(retado) || 
+                        games.get(i).getJugador2().equals(retado))){
+                   
+                    if(games.get(i).getEstado().equals("reto")){
+                    // si es esa partida en específico
+                        if (games.get(i).getJugador1().equals(retador) &&
+                            games.get(i).getJugador2().equals(retado)) {
+                            games.get(i).setEstado("Activa");// set the challenge accepted and starts the game
+                            //seleccionar los pjs aleatorios
+                            //games.get(i).setJugador1(random character);
+                            //games.get(i).setJugador2(random character);
+                            games.get(i).setTurno(retador);
+                            gameIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            for (int i = 0; i < games.size(); i++) {
+                // si la partida es un reto
                 if(games.get(i).getEstado().equals("reto")){
                 // si es esa partida en específico
                     if (games.get(i).getJugador1().equals(retador) &&
                         games.get(i).getJugador2().equals(retado)) {
-                        games.get(i).setEstado("Activa");// set the challenge accepted and starts the game
-                        //seleccionar los pjs aleatorios
-                        //games.get(i).setJugador1(random character);
-                        //games.get(i).setJugador2(random character);
-                        games.get(i).setTurno(retador);
-                        gameIndex = i;
+                        games.get(i).setEstado("Rechazada");
                         break;
                     }
                 }
@@ -186,15 +202,17 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
             System.out.println(""+guess.LogIn("Adrian"));
             System.out.println(""+guess.LogIn("Susan"));
            
-            System.out.println(""+ guess.SeeOnlinePlayers());
+            System.out.println("asfd"+ guess.SeeOnlinePlayers());
 ///////////////////////////////////////////////////////////////////            
             System.out.println(guess.Challenge("Johan", "Yamile"));
             System.out.println(guess.Challenge("Adrian", "Yamile"));
             System.out.println(guess.Challenge("Yamile", "Susan" ));
 ////////////////////////////////////////////////////    
+            System.out.println(""+guess.AskByChallenges("Yamile"));
             
-            System.out.println(""+ guess.AnswerChallenges("Yamile", "Johan", "Aceptar"));
-            
+            System.out.println("asdf "+ guess.AnswerChallenges("Yamile", "Johan", "Aceptar"));
+            System.out.println("acepta un reto que no debe:"+ guess.AnswerChallenges("Susan", "Yamile", "Aceptar"));
+            System.out.println("rechaza:"+ guess.AnswerChallenges("Susan", "Yamile", "Rechazar"));
         }catch(Exception e){
             e.printStackTrace();
         }
