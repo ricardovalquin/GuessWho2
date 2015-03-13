@@ -5,8 +5,11 @@
  */
 package Server;
 
+import Interfaces.Games;
 import Interfaces.GuessWhoInterface;
+import static java.lang.Math.random;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -130,15 +133,16 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
     }
 
     @Override
+    //falta verificar que el retador no se encuentre en un reto en juego
     public int AnswerChallenges(String retado, String retador, String respuesta) {
         int gameIndex = -1;
         
         if (respuesta.equals("Aceptar")) {
             for (int i = 0; i < games.size(); i++) {
-                // si la partida es un reto
-                if(!(games.get(i).getEstado().equals("Activa")) &&
-                        (games.get(i).getJugador1().equals(retado) || 
-                        games.get(i).getJugador2().equals(retado))){
+                // si el retado NO está en una partida activa
+                if((!games.get(i).getEstado().equals("Activa")) &&
+                        (!games.get(i).getJugador1().equals(retado) || //si yo no soy el retador
+                        games.get(i).getJugador2().equals(retado))){// si soy el retado
                    
                     if(games.get(i).getEstado().equals("reto")){
                     // si es esa partida en específico
@@ -146,8 +150,13 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                             games.get(i).getJugador2().equals(retado)) {
                             games.get(i).setEstado("Activa");// set the challenge accepted and starts the game
                             //seleccionar los pjs aleatorios
-                            //games.get(i).setJugador1(random character);
-                            //games.get(i).setJugador2(random character);
+                            Random rand = new Random();
+                            int randomNum1 = rand.nextInt((17 - 0) + 1) + 0;
+                            int randomNum2 = rand.nextInt((17 - 0) + 1) + 0;
+                            games.get(i).setPersonaje1(games.get(i).getCharacters().get(1).getName());
+                            //System.out.println(""+games.get(i).getPersonaje1());randomNum2
+                            games.get(i).setPersonaje2(games.get(i).getCharacters().get(0).getName());
+                            //System.out.println(""+games.get(i).getPersonaje2());
                             games.get(i).setTurno(retador);
                             gameIndex = i;
                             break;
@@ -175,12 +184,22 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
 
     @Override
     public String SeeCharacter(int partida, String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String pj = null;
+        for (int i = 0; i < games.size(); i++) {
+            if (i == partida) {
+                if (games.get(i).getJugador1().equals(nombre)) {
+                    pj = games.get(i).getPersonaje1();
+                }else if(games.get(i).getJugador2().equals(nombre)){
+                    pj = games.get(i).getPersonaje2();
+                }
+            }
+        }
+        return pj;
     }
     
     @Override
     public String SeeTurn(int partida) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return games.get(partida).getTurno();
     } 
 
     @Override
@@ -189,30 +208,76 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
     }
 
     @Override
-    public boolean AskCharacter(int partida, String retador, String character) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean AskCharacter(int partida, String player, String character) {
+        boolean isCharacter = false;
+        
+        if(SeeTurn(partida).equals(player)){// si es el turno del jugador puede preguntar
+        
+            for (int i = 0; i < games.size(); i++) {
+                if (games.get(i).getEstado().equals("Activa")) {
+                    if (games.get(i).getJugador1().equals(player)) {//si es el retador el que pregunta
+                        if (games.get(i).getPersonaje2().equals(character)) {// si el pj preguntado al otro player es
+                            isCharacter = true;
+                            games.get(i).setTurno(games.get(i).getJugador2());
+                            break;
+                        }
+                    }else if(games.get(i).getJugador2().equals(player)){// si es el retado el que pregunta
+                        if (games.get(i).getPersonaje1().equals(character)) {//si el pj preguntado al otro player es
+                            isCharacter = true;
+                            games.get(i).setTurno(games.get(i).getJugador1());
+                            break;
+                        }
+                    }
+                }
+            }
+        }         
+        return isCharacter;
     }      
     
     public static void main(String arg[]){
         try{
             GuessWhoServerImplementation guess = new GuessWhoServerImplementation();
-            
+            System.out.println("LogIN:");
             System.out.println(""+guess.LogIn("Johan"));
             System.out.println(""+guess.LogIn("Yamile"));
             System.out.println(""+guess.LogIn("Adrian"));
             System.out.println(""+guess.LogIn("Susan"));
            
-            System.out.println("asfd"+ guess.SeeOnlinePlayers());
+            System.out.println("ver online:");
+            System.out.println(""+ guess.SeeOnlinePlayers());
 ///////////////////////////////////////////////////////////////////            
+            System.out.println("Crear retos:");
             System.out.println(guess.Challenge("Johan", "Yamile"));
             System.out.println(guess.Challenge("Adrian", "Yamile"));
             System.out.println(guess.Challenge("Yamile", "Susan" ));
 ////////////////////////////////////////////////////    
+            System.out.println("pregunta por retos:");
             System.out.println(""+guess.AskByChallenges("Yamile"));
             
-            System.out.println("asdf "+ guess.AnswerChallenges("Yamile", "Johan", "Aceptar"));
-            System.out.println("acepta un reto que no debe:"+ guess.AnswerChallenges("Susan", "Yamile", "Aceptar"));
+            System.out.println("responde retos:");
+            System.out.println(""+ guess.AnswerChallenges("Yamile", "Johan", "Aceptar"));
+            // pendiente por verificar
+            System.out.println("acepta un reto que no debe:"+ guess.AnswerChallenges("Adrian", "Yamile", "Aceptar"));
+            //System.out.println("acepta un reto que no debe:"+ guess.AnswerChallenges("Susan", "Yamile", "Aceptar"));
             System.out.println("rechaza:"+ guess.AnswerChallenges("Susan", "Yamile", "Rechazar"));
+//////////////////////////////////////////////////////////////////        
+            //preguntar por personaje
+            System.out.println("preguntando por personaje1 "+ guess.SeeCharacter(0, "Johan"));
+            System.out.println("preguntando por personaje2 "+ guess.SeeCharacter(0, "Yamile"));
+            
+/////////////////////////////////////
+            //viendo turno
+            System.out.println("turno inicial: "+ guess.SeeTurn(0));
+///////////////////////////////
+            //preguntando por caracter
+            System.out.println("preguntando por personajes");
+            //preguntando por uno que no se
+            //System.out.println("no se cual pj es: "+ guess.AskCharacter(0, "Johan", "Mary"));
+            //preguntando por uno que si se
+            //System.out.println("si se cual pj es: "+ guess.AskCharacter(0, "Johan", "Ana"));
+            //preguntando cuando no es mi turno
+            System.out.println("no es mi turno: "+ guess.AskCharacter(0, "Yamile", "Patrick"));
+            
         }catch(Exception e){
             e.printStackTrace();
         }
