@@ -70,6 +70,7 @@ public class GuessWhoServerThread extends Thread implements Runnable {
         return returnValue;
     }
     
+    @Override
     public void run(){
         command = "COMANDO"; // no se para qué pero bueno
         try{
