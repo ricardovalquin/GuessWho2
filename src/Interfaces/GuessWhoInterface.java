@@ -25,9 +25,9 @@ public interface GuessWhoInterface {
     
     public String SeeCharacter(int partida, String nombre);// see my character
     
-    public boolean AskCharacteristic(int partida, String nombre, String característica);
+    public boolean AskCharacteristic(int partida, String player, String característica);
     
-    public boolean AskCharacter (int partida, String retador, String character);
+    public boolean AskCharacter (int partida, String player, String character);
     
     public String SeeTurn(int partida);
     

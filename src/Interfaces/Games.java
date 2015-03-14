@@ -23,6 +23,7 @@ public class Games {
 
     private String turno = null; //cambia entre los nombres de los jugadores
     private String estado = null; // iniciada o terminada
+    private String ganador = null;
 
 	//GETTERS AND SETTERS
 
@@ -56,6 +57,15 @@ public class Games {
         characters.add(character = new Characters("Theresa", "Negro", "Negro", "Negro", "false", "false", "true", "female"));
         characters.add(character = new Characters("Luna", "Amarillo", "Negro", "Negro", "false", "false", "tue", "female"));
     }
+
+    public String getGanador() {
+        return ganador;
+    }
+
+    public void setGanador(String ganador) {
+        this.ganador = ganador;
+    }
+    
 
     public ArrayList<Characters> getCharacters() {
         return characters;

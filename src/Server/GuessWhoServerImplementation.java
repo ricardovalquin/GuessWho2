@@ -203,8 +203,100 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
     } 
 
     @Override
-    public boolean AskCharacteristic(int partida, String nombre, String característica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //se pregunta por la característica del otro jugador, player es quien pregunta
+    public boolean AskCharacteristic(int partida, String player, String caracteristica) {
+        boolean isCharacteristic = false;
+         String vec[] = caracteristica.split(" ");
+        int position = 0;
+        //pelo ojos piel bigote barba gafas sexo
+        //0        1   2   3     4      5    6  
+        if (games.get(partida).getEstado().equals("Activa")) {
+            if (SeeTurn(partida).equals(player)) {
+        
+                switch(vec[0]){
+                    case "hairColor":
+                        position = 0;
+                        break;
+                    case "eyesColor":
+                        position = 1;
+                        break;
+                    case "skinColor":
+                        position = 2;
+                        break;
+                    case "moustache":
+                        position = 3;
+                        break;
+                    case "barb":
+                        position = 4;
+                        break;
+                    case "glases":
+                        position = 5;
+                        break;
+                    case "sexo":
+                        position = 6;
+                        break;
+                }   
+                // si es el pj1 el que pregunta
+                if (games.get(partida).getJugador1().equals(player)) {
+                    //obtener el nombre del pj del jugador 2
+                    //recorrer los jugadores y comparar nombre
+                    for (int i = 0; i < games.get(partida).getCharacters().size(); i++) {
+                        if (games.get(partida).getCharacters().get(i).getName().equals(games.get(partida).getPersonaje2())) {
+                            
+                            if (games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1])){
+                                isCharacteristic = true;//devolver true
+                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+                                    if(!(games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+                                    }
+                                }
+                                games.get(partida).setTurno(games.get(partida).getJugador2());
+                                break;// break porque ya lo encontró y ya cambió en todos, no tiene que hacer mas
+
+                                //cambiar turno
+                            }else{
+                                isCharacteristic = false;
+                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+                                    if((games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+                                    }
+                                }
+                                games.get(partida).setTurno(games.get(partida).getJugador2());
+                                break;
+                            }
+                        }
+                    }
+                }else if(games.get(partida).getJugador2().equals(player)){
+                    for (int i = 0; i < games.get(partida).getCharacters().size(); i++) {
+                        if (games.get(partida).getCharacters().get(i).getName().equals(games.get(partida).getPersonaje1())) {
+                            
+                            if (games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1])){
+                                isCharacteristic = true;//devolver true
+                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+                                    if(!(games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+                                    }
+                                }
+                                games.get(partida).setTurno(games.get(partida).getJugador1());
+                                break;// break porque ya lo encontró y ya cambió en todos, no tiene que hacer mas
+
+                                //cambiar turno
+                            }else{
+                                isCharacteristic = false;
+                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+                                    if((games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+                                    }
+                                }
+                                games.get(partida).setTurno(games.get(partida).getJugador1());
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }       
+        return isCharacteristic;
     }
 
     @Override
@@ -212,25 +304,31 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
         boolean isCharacter = false;
         
         if(SeeTurn(partida).equals(player)){// si es el turno del jugador puede preguntar
-        
-            for (int i = 0; i < games.size(); i++) {
-                if (games.get(i).getEstado().equals("Activa")) {
-                    if (games.get(i).getJugador1().equals(player)) {//si es el retador el que pregunta
-                        if (games.get(i).getPersonaje2().equals(character)) {// si el pj preguntado al otro player es
+                if (games.get(partida).getEstado().equals("Activa")) {
+                    if (games.get(partida).getJugador1().equals(player)) {//si es el retador el que pregunta
+                        if (games.get(partida).getPersonaje2().equals(character)) {// si el pj preguntado al otro player es
                             isCharacter = true;
-                            games.get(i).setTurno(games.get(i).getJugador2());
-                            break;
+                            games.get(partida).setGanador(games.get(partida).getJugador1());
+                            games.get(partida).setEstado("Finalizada");
+                            //games.get(partida).setTurno(games.get(partida).getJugador2());
                         }
-                    }else if(games.get(i).getJugador2().equals(player)){// si es el retado el que pregunta
-                        if (games.get(i).getPersonaje1().equals(character)) {//si el pj preguntado al otro player es
+                        else{
+                            games.get(partida).setTurno(games.get(partida).getJugador2());
+                        }
+                    }else if(games.get(partida).getJugador2().equals(player)){// si es el retado el que pregunta
+                        if (games.get(partida).getPersonaje1().equals(character)) {//si el pj preguntado al otro player es
                             isCharacter = true;
-                            games.get(i).setTurno(games.get(i).getJugador1());
-                            break;
+                            games.get(partida).setGanador(games.get(partida).getJugador2());
+                            games.get(partida).setEstado("Finalizada");
+                        }
+                        else{
+                            games.get(partida).setTurno(games.get(partida).getJugador1());
+
                         }
                     }
                 }
             }
-        }         
+              
         return isCharacter;
     }      
     
@@ -262,22 +360,31 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
             System.out.println("rechaza:"+ guess.AnswerChallenges("Susan", "Yamile", "Rechazar"));
 //////////////////////////////////////////////////////////////////        
             //preguntar por personaje
-            System.out.println("preguntando por personaje1 "+ guess.SeeCharacter(0, "Johan"));
-            System.out.println("preguntando por personaje2 "+ guess.SeeCharacter(0, "Yamile"));
+            //System.out.println("preguntando por personaje1 "+ guess.SeeCharacter(0, "Johan"));
+            //System.out.println("preguntando por personaje2 "+ guess.SeeCharacter(0, "Yamile"));
             
 /////////////////////////////////////
             //viendo turno
             System.out.println("turno inicial: "+ guess.SeeTurn(0));
 ///////////////////////////////
             //preguntando por caracter
-            System.out.println("preguntando por personajes");
+            //System.out.println("preguntando por personajes");
             //preguntando por uno que no se
             //System.out.println("no se cual pj es: "+ guess.AskCharacter(0, "Johan", "Mary"));
             //preguntando por uno que si se
             //System.out.println("si se cual pj es: "+ guess.AskCharacter(0, "Johan", "Ana"));
             //preguntando cuando no es mi turno
-            System.out.println("no es mi turno: "+ guess.AskCharacter(0, "Yamile", "Patrick"));
+            //System.out.println("no es mi turno: "+ guess.AskCharacter(0, "Yamile", "Patrick"));
             
+////////////////////////////////////////////////
+            //preguntando por característica
+            //AskCharacteristic(int partida, String player, String caracteristica) jugador 1 iene 1 jugador 2 tiene 0
+            System.out.println("preguntando por caracterisitica: "+guess.AskCharacteristic(0, "Johan", "moustache false"));
+            System.out.println("Viendo que cambie de turno: "+ guess.SeeTurn(0));
+            System.out.println("preguntando por caracterisitica en sentido contrario: "+guess.AskCharacteristic(0, "Yamile", "hairColor Naranja")); 
+            System.out.println("Viendo que cambie de turno: "+ guess.SeeTurn(0));
+            System.out.println("preguntando por caracterisitica que no cumple: "+guess.AskCharacteristic(0, "Johan", "skinColor Blanco")); 
+            System.out.println("Viendo que cambie de turno: "+ guess.SeeTurn(0));
         }catch(Exception e){
             e.printStackTrace();
         }
