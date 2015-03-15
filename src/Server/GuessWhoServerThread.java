@@ -37,10 +37,8 @@ public class GuessWhoServerThread extends Thread implements Runnable {
     public String demux(String message){
         vec = message.split(" ");
         returnValue = "ok";
-            System.out.println("lo que vino en vec[0]: " +vec[0]);
         try{
             if (vec[0].equals("LogIn")) {
-                System.out.println("lo que vino en vec[1]: " +vec[1]);
                 returnValue = "" + gwInterface.LogIn(vec[1]);
             }else if(vec[0].equals("LOgOut")){
                 gwInterface.LOgOut(vec[1]);

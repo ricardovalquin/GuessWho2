@@ -42,47 +42,47 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
 
     @Override
     public boolean LOgOut(String playerName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Boolean.parseBoolean(sendMessage("LOgOut " + playerName));
     }
 
     @Override
     public String SeeOnlinePlayers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sendMessage("SeeOnlinePlayers ");
     }
 
     @Override
     public boolean Challenge(String retador, String contrincante) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Boolean.parseBoolean(sendMessage("Challenge " + retador + " " + contrincante));
     }
 
     @Override
     public int AnswerChallenges(String retado, String retador, String respuesta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(sendMessage("AnswerChallenges " + retador + " " + respuesta));
     }
 
     @Override
     public String AskByChallenges(String retado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sendMessage("AskByChallenges " + retado);
     }
 
     @Override
     public String SeeCharacter(int partida, String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sendMessage("SeeCharacter " + partida + " " + nombre);
     }
 
     @Override
-    public boolean AskCharacteristic(int partida, String player, String característica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean AskCharacteristic(int partida, String player, String caracteristica) {
+        return Boolean.parseBoolean(sendMessage("AskCharacteristic " + partida + " " + player + " " + caracteristica));
     }
 
     @Override
     public boolean AskCharacter(int partida, String player, String character) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Boolean.parseBoolean(sendMessage("AskCharacter " + partida + " " + player + " " + character));
     }
 
     @Override
     public String SeeTurn(int partida) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sendMessage("SeeTurn " + partida);
     }
     
     public String sendMessage(String message){
@@ -99,7 +99,27 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
     public static void main(String arg[]){
         try{
             test = new GuessWhoClientTCP("localhost", 2015);
+            test.LogIn("Alvaro");
             test.LogIn("Ricardo");
+            test.LogIn("Andrea");
+            test.LogIn("Claudia");
+            System.out.println("creando retos:");
+            test.Challenge("Alvaro", "Ricardo");
+            test.Challenge("Andrea", "Claudia");
+            test.Challenge("Alvaro", "Claudia");
+            System.out.println("preguntando por retos:");
+            System.out.println(""+test.AskByChallenges("Claudia"));
+            System.out.println("respondiendo retos:");
+            System.out.println("asfd: "+test.AnswerChallenges("Claudia", "Andrea", "Rechazar"));
+            System.out.println(""+test.AnswerChallenges("Claudia", "Alvaro", "Aceptar"));
+            System.out.println("jugando: ");
+            System.out.println(""+test.SeeCharacter(2, "Claudia"));
+            System.out.println(""+test.SeeCharacter(2, "Alvaro"));
+            
+            while(true){
+                int i = 0;
+                i++;
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar", "Chat", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
