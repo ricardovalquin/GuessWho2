@@ -22,7 +22,7 @@ public class GuesswhoServerTCP {
     public GuesswhoServerTCP(int port){
         try{
             GWImplementation = new GuessWhoServerImplementation();
-            serverSocket = new ServerSocket();
+            serverSocket = new ServerSocket(port);
         }catch(IOException e){
             
         }
@@ -34,10 +34,11 @@ public class GuesswhoServerTCP {
                 System.out.println("Waiting for a player...");
                 GWClientSocket = serverSocket.accept();
                 System.out.println("Player founded");
-                 System.out.println(GWClientSocket.getInetAddress().getHostName());
+                System.out.println("asfd" + GWClientSocket.getInetAddress().getHostName());
                  GWThread = new GuessWhoServerThread(GWClientSocket, GWImplementation);
                  GWThread.start();
             }catch(IOException e){
+                System.out.println("acá se totio");
                 e.printStackTrace();
             }
         }

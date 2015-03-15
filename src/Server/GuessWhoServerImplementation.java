@@ -38,12 +38,10 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
         }
 
         if(!founded){
-           
-            for(int i=0; i<users.size(); i++){//Se recorre a todos los usuarios
+            /*for(int i=0; i<users.size(); i++){//Se recorre a todos los usuarios
                 //Se le deja el mensaje de entrada del usuario
                 users.get(i).setMensaje("El usuario "+ playerName +" inicio sesion");
-            }
-
+            }*/
             users.add(new Users(playerName));
             result=true;
         }
@@ -332,7 +330,7 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
         return isCharacter;
     }      
     
-    public static void main(String arg[]){
+    /*public static void main(String arg[]){
         try{
             GuessWhoServerImplementation guess = new GuessWhoServerImplementation();
             System.out.println("LogIN:");
@@ -388,7 +386,7 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
         }catch(Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
 
     
 }

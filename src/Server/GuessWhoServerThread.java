@@ -21,7 +21,7 @@ public class GuessWhoServerThread extends Thread implements Runnable {
     private DataOutputStream out = null;
     private Socket GWClientsocket = null;
     private String vec[];
-    private String returnValue,command;
+    private String returnValue = null,command = null;
     
     public GuessWhoServerThread(Socket clientSocket, GuessWhoServerImplementation GuessWhoServer){
         this.GWClientsocket = clientSocket;
@@ -37,9 +37,10 @@ public class GuessWhoServerThread extends Thread implements Runnable {
     public String demux(String message){
         vec = message.split(" ");
         returnValue = "ok";
-            System.out.println(vec[0]);
+            System.out.println("lo que vino en vec[0]: " +vec[0]);
         try{
             if (vec[0].equals("LogIn")) {
+                System.out.println("lo que vino en vec[1]: " +vec[1]);
                 returnValue = "" + gwInterface.LogIn(vec[1]);
             }else if(vec[0].equals("LOgOut")){
                 gwInterface.LOgOut(vec[1]);
@@ -76,6 +77,7 @@ public class GuessWhoServerThread extends Thread implements Runnable {
         try{
             for (; !command.equals("CerrarSesion"); out.flush()) {
                 command = in.readUTF();
+                System.out.println("llego mensaje "+command);
                 out.writeUTF(demux(command));
             }
             GWClientsocket.close();
