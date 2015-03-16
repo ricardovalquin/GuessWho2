@@ -204,11 +204,14 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
     //se pregunta por la característica del otro jugador, player es quien pregunta
     public boolean AskCharacteristic(int partida, String player, String caracteristica) {
         boolean isCharacteristic = false;
+        System.out.println(caracteristica);
+
          String vec[] = caracteristica.split(" ");
         int position = 0;
         //pelo ojos piel bigote barba gafas sexo
         //0        1   2   3     4      5    6  
         if (games.get(partida).getEstado().equals("Activa")) {
+            //System.out.println("Encontro la partida");
             if (SeeTurn(partida).equals(player)) {
         
                 switch(vec[0]){
@@ -217,6 +220,7 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                         break;
                     case "eyesColor":
                         position = 1;
+                        System.err.println("Es la pacision 1 color de ojos");
                         break;
                     case "skinColor":
                         position = 2;
@@ -236,6 +240,7 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                 }   
                 // si es el pj1 el que pregunta
                 if (games.get(partida).getJugador1().equals(player)) {
+                    
                     //obtener el nombre del pj del jugador 2
                     //recorrer los jugadores y comparar nombre
                     for (int i = 0; i < games.get(partida).getCharacters().size(); i++) {
@@ -293,7 +298,7 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                     }
                 }
             }
-        }       
+        }    
         return isCharacteristic;
     }
 
@@ -311,7 +316,9 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                             //games.get(partida).setTurno(games.get(partida).getJugador2());
                         }
                         else{
-                            games.get(partida).setTurno(games.get(partida).getJugador2());
+                            games.get(partida).setGanador(games.get(partida).getJugador2());
+                            games.get(partida).setEstado("Finalizada");
+                            //games.get(partida).setTurno(games.get(partida).getJugador2());
                         }
                     }else if(games.get(partida).getJugador2().equals(player)){// si es el retado el que pregunta
                         if (games.get(partida).getPersonaje1().equals(character)) {//si el pj preguntado al otro player es

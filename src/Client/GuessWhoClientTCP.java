@@ -57,7 +57,7 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
 
     @Override
     public int AnswerChallenges(String retado, String retador, String respuesta) {
-        return Integer.parseInt(sendMessage("AnswerChallenges " + retador + " " + respuesta));
+        return Integer.parseInt(sendMessage("AnswerChallenges " + retado + " " + retador + " " + respuesta));
     }
 
     @Override
@@ -104,17 +104,26 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
             test.LogIn("Andrea");
             test.LogIn("Claudia");
             System.out.println("creando retos:");
-            test.Challenge("Alvaro", "Ricardo");
-            test.Challenge("Andrea", "Claudia");
+            //test.Challenge("Alvaro", "Ricardo");
+            //test.Challenge("Andrea", "Claudia");
             test.Challenge("Alvaro", "Claudia");
             System.out.println("preguntando por retos:");
             System.out.println(""+test.AskByChallenges("Claudia"));
             System.out.println("respondiendo retos:");
-            System.out.println("asfd: "+test.AnswerChallenges("Claudia", "Andrea", "Rechazar"));
+            //System.out.println("asfd: "+test.AnswerChallenges("Claudia", "Andrea", "Rechazar"));
             System.out.println(""+test.AnswerChallenges("Claudia", "Alvaro", "Aceptar"));
             System.out.println("jugando: ");
-            System.out.println(""+test.SeeCharacter(2, "Claudia"));
-            System.out.println(""+test.SeeCharacter(2, "Alvaro"));
+            System.out.println(""+test.SeeCharacter(0, "Claudia"));
+            System.out.println(""+test.SeeCharacter(0, "Alvaro"));
+            System.out.println("Viendo que cambie de turno: "+ test.SeeTurn(0));
+            //System.out.println("Preguntando por pj:");
+            //System.out.println(""+test.AskCharacter(0, "Alvaro", "Ana"));
+            //System.out.println("Viendo que cambie de turno: "+ test.SeeTurn(0));
+            //System.out.println("Preguntando por pj:");
+            //System.out.println(""+test.AskCharacter(0, "Claudia", "Patrick"));
+            System.out.println("preguntando por característica");
+            System.out.println(""+test.AskCharacteristic(0, "Alvaro", "eyesColor Verde"));
+//                                       AskCharacteristic(0, "Yamile", "hairColor Naranja")
             
             while(true){
                 int i = 0;

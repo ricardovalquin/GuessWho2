@@ -44,7 +44,7 @@ public class GuessWhoServerThread extends Thread implements Runnable {
                 gwInterface.LOgOut(vec[1]);
                 returnValue = "CerrarSesion";
             }else if (vec[0].equals("SeeOnlinePlayers")) {
-                gwInterface.SeeOnlinePlayers();
+                returnValue = gwInterface.SeeOnlinePlayers();
             }else if (vec[0].equals("Challenge")) {
                 returnValue = "" + gwInterface.Challenge(vec[1], vec[2]);
             }else if (vec[0].equals("AnswerChallenges")) {
@@ -55,7 +55,8 @@ public class GuessWhoServerThread extends Thread implements Runnable {
             }else if (vec[0].equals("SeeCharacter")) {
                 returnValue = "" + gwInterface.SeeCharacter(Integer.parseInt(vec[1]), vec[2]);
             }else if (vec[0].equals("AskCharacteristic")) {
-                returnValue = "" + gwInterface.AskCharacteristic(Integer.parseInt(vec[1]), vec[2], vec[3]);
+                returnValue = "" + gwInterface.AskCharacteristic(Integer.parseInt(vec[1]), vec[2], vec[3]+" "+vec[4]);
+//                returnValue = "" + gwInterface.AskCharacteristic(Integer.parseInt(vec[1]), vec[2], vec[3]);
             }else if (vec[0].equals("AskCharacter")) {
                 returnValue = "" + gwInterface.AskCharacter(Integer.parseInt(vec[1]), vec[2], vec[3]);
             }else if (vec[0].equals("SeeTurn")) {
