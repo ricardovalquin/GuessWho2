@@ -96,44 +96,44 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
         return message;
     }
     
-    public static void main(String arg[]){
-        try{
-            test = new GuessWhoClientTCP("localhost", 2015);
-            test.LogIn("Alvaro");
-            test.LogIn("Ricardo");
-            test.LogIn("Andrea");
-            test.LogIn("Claudia");
-            System.out.println("creando retos:");
-            //test.Challenge("Alvaro", "Ricardo");
-            //test.Challenge("Andrea", "Claudia");
-            test.Challenge("Alvaro", "Claudia");
-            System.out.println("preguntando por retos:");
-            System.out.println(""+test.AskByChallenges("Claudia"));
-            System.out.println("respondiendo retos:");
-            //System.out.println("asfd: "+test.AnswerChallenges("Claudia", "Andrea", "Rechazar"));
-            System.out.println(""+test.AnswerChallenges("Claudia", "Alvaro", "Aceptar"));
-            System.out.println("jugando: ");
-            System.out.println(""+test.SeeCharacter(0, "Claudia"));
-            System.out.println(""+test.SeeCharacter(0, "Alvaro"));
-            System.out.println("Viendo que cambie de turno: "+ test.SeeTurn(0));
-            //System.out.println("Preguntando por pj:");
-            //System.out.println(""+test.AskCharacter(0, "Alvaro", "Ana"));
-            //System.out.println("Viendo que cambie de turno: "+ test.SeeTurn(0));
-            //System.out.println("Preguntando por pj:");
-            //System.out.println(""+test.AskCharacter(0, "Claudia", "Patrick"));
-            System.out.println("preguntando por característica");
-            System.out.println(""+test.AskCharacteristic(0, "Alvaro", "eyesColor Verde"));
-//                                       AskCharacteristic(0, "Yamile", "hairColor Naranja")
-            
-            while(true){
-                int i = 0;
-                i++;
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error al conectar", "Chat", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-    }
-    
-
-    }
+//    public static void main(String arg[]){
+//        try{
+//            test = new GuessWhoClientTCP("localhost", 2015);
+//            test.LogIn("Alvaro");
+//            test.LogIn("Ricardo");
+//            test.LogIn("Andrea");
+//            test.LogIn("Claudia");
+//            System.out.println("creando retos:");
+//            //test.Challenge("Alvaro", "Ricardo");
+//            //test.Challenge("Andrea", "Claudia");
+//            test.Challenge("Alvaro", "Claudia");
+//            System.out.println("preguntando por retos:");
+//            System.out.println(""+test.AskByChallenges("Claudia"));
+//            System.out.println("respondiendo retos:");
+//            //System.out.println("asfd: "+test.AnswerChallenges("Claudia", "Andrea", "Rechazar"));
+//            System.out.println(""+test.AnswerChallenges("Claudia", "Alvaro", "Aceptar"));
+//            System.out.println("jugando: ");
+//            System.out.println(""+test.SeeCharacter(0, "Claudia"));
+//            System.out.println(""+test.SeeCharacter(0, "Alvaro"));
+//            System.out.println("Viendo que cambie de turno: "+ test.SeeTurn(0));
+//            //System.out.println("Preguntando por pj:");
+//            //System.out.println(""+test.AskCharacter(0, "Alvaro", "Ana"));
+//            //System.out.println("Viendo que cambie de turno: "+ test.SeeTurn(0));
+//            //System.out.println("Preguntando por pj:");
+//            //System.out.println(""+test.AskCharacter(0, "Claudia", "Patrick"));
+//            System.out.println("preguntando por característica");
+//            System.out.println(""+test.AskCharacteristic(0, "Alvaro", "eyesColor Verde"));
+////                                       AskCharacteristic(0, "Yamile", "hairColor Naranja")
+//            
+////            while(true){
+////                int i = 0;
+////                i++;
+////            }
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, "Error al conectar", "Chat", JOptionPane.ERROR_MESSAGE);
+//            e.printStackTrace();
+//    }
+//    
+//
+//    }
 }

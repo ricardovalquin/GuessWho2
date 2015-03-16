@@ -31,4 +31,6 @@ public interface GuessWhoInterface {
     
     public String SeeTurn(int partida);
     
+//    public String AskByGameState(int partida);
+    
 }

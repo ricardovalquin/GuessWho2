@@ -248,22 +248,22 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                             
                             if (games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1])){
                                 isCharacteristic = true;//devolver true
-                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
-                                    if(!(games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
-                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
-                                    }
-                                }
+//                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+//                                    if(!(games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+//                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+//                                    }
+//                                }
                                 games.get(partida).setTurno(games.get(partida).getJugador2());
                                 break;// break porque ya lo encontró y ya cambió en todos, no tiene que hacer mas
 
                                 //cambiar turno
                             }else{
                                 isCharacteristic = false;
-                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
-                                    if((games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
-                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
-                                    }
-                                }
+//                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+//                                    if((games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+//                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+//                                    }
+//                                }
                                 games.get(partida).setTurno(games.get(partida).getJugador2());
                                 break;
                             }
@@ -275,22 +275,22 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                             
                             if (games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1])){
                                 isCharacteristic = true;//devolver true
-                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
-                                    if(!(games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
-                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
-                                    }
-                                }
+//                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+//                                    if(!(games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+//                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+//                                    }
+//                                }
                                 games.get(partida).setTurno(games.get(partida).getJugador1());
                                 break;// break porque ya lo encontró y ya cambió en todos, no tiene que hacer mas
 
                                 //cambiar turno
                             }else{
                                 isCharacteristic = false;
-                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
-                                    if((games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
-                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
-                                    }
-                                }
+//                                for (int j = 0; j < games.get(partida).getCharacters().size(); j++) {//setear los que no cumplen caracteristica
+//                                    if((games.get(partida).getCharacters().get(i).getSelfcharacteristic().get(position).equals(vec[1]))){
+//                                        games.get(partida).getCharacters().get(i).setState(false);//!games.get(partida).getCharacters().get(i).isState()
+//                                    }
+//                                }
                                 games.get(partida).setTurno(games.get(partida).getJugador1());
                                 break;
                             }
