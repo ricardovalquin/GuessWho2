@@ -61,7 +61,10 @@ public class GuessWhoServerThread extends Thread implements Runnable {
                 returnValue = "" + gwInterface.AskCharacter(Integer.parseInt(vec[1]), vec[2], vec[3]);
             }else if (vec[0].equals("SeeTurn")) {
                 returnValue = "" + gwInterface.SeeTurn(Integer.parseInt(vec[1]));
-            }         
+            }else if (vec[0].equals("SeeGame")) {
+                returnValue = "" + gwInterface.SeeGame(vec[1]);
+            }
+         
             
         }catch(Exception ex){
             returnValue = ex.getMessage();

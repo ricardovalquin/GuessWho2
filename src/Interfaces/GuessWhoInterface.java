@@ -31,6 +31,8 @@ public interface GuessWhoInterface {
     
     public String SeeTurn(int partida);
     
+    public int SeeGame(String player);// retorna la partida que se está jugando
+    
 //    public String AskByGameState(int partida);
     
 }

@@ -23,6 +23,8 @@ public class GuessWhoView extends javax.swing.JFrame {
     GuessWhoClientStatesThread stateThread;
     String answer;
     ArrayList<JLabel> labels;
+    String player;// when you log in your name is here
+    int game;// when you accept the challenge the game is here
     /**
      * Creates new form GuessWhoView
      */
@@ -55,7 +57,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     }
     
     public void whoIsOnLine(String onlines){
-    
+        
     }
     
     public void activeChallenges(String challenges){
@@ -63,7 +65,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     }
     
     public void seeTurn(String trurn){
-    
+        
     }
     
     
@@ -77,6 +79,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        labelChallenges = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         LabelAna = new javax.swing.JLabel();
         LabelPatrick = new javax.swing.JLabel();
@@ -118,24 +121,35 @@ public class GuessWhoView extends javax.swing.JFrame {
         LabelMyCharacter = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         LabelTurn = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        labelAnswer = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnAcceptChallenge = new javax.swing.JButton();
         btnRejectChallenge = new javax.swing.JButton();
         btnChallenge = new javax.swing.JButton();
+        labelOnLine = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelChallenges.setText("...");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelChallenges)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelChallenges)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         LabelAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Ana.png"))); // NOI18N
@@ -312,6 +326,10 @@ public class GuessWhoView extends javax.swing.JFrame {
 
         LabelTurn.setText("jLabel13");
 
+        jLabel14.setText("RESPUESTA:");
+
+        labelAnswer.setText("jLabel15");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -368,7 +386,9 @@ public class GuessWhoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addComponent(LabelTurn))
+                    .addComponent(LabelTurn)
+                    .addComponent(jLabel14)
+                    .addComponent(labelAnswer))
                 .addGap(76, 76, 76))
         );
         jPanel3Layout.setVerticalGroup(
@@ -384,39 +404,39 @@ public class GuessWhoView extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(8, 8, 8)
                         .addComponent(jLabel13)
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HairColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EyesColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SkinColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Moustache, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelTurn))
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(HairColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EyesColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SkinColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Moustache, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(AskCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel8))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(Barb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Glases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Sex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(AskCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelAnswer)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(LabelTurn)))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Barb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Glases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Sex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -441,6 +461,8 @@ public class GuessWhoView extends javax.swing.JFrame {
 
         btnChallenge.setText("Retar");
 
+        labelOnLine.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -455,7 +477,10 @@ public class GuessWhoView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelOnLine)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -489,7 +514,9 @@ public class GuessWhoView extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(btnChallenge))
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelOnLine)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -501,20 +528,15 @@ public class GuessWhoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void HairColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HairColorActionPerformed
-        ArrayList<Characters> characterss = null;
-        characterss = pjs.getCharacters();
-        if(GWInterface.AskCharacteristic("hairColor "+ HairColor.getItemAt(HairColor.getSelectedIndex()))){
-            for (int i = 0; i< characterss.size(); i++) {                
-                if (!characterss.get(i).getSelfcharacteristic().get(1).equals(HairColor.getItemAt(HairColor.getSelectedIndex()))) {//si el character tiene la misma característica
-                    labels.get(i).setEnabled(false);
-                }
-            }
+        if(GWInterface.AskCharacteristic(game, player,"hairColor "+ HairColor.getItemAt(HairColor.getSelectedIndex()))){
+            labelAnswer.setText("Si tiene cabello color: "+HairColor.getItemAt(HairColor.getSelectedIndex()) );
+//            for (int i = 0; i< characterss.size(); i++) {                
+//                if (!characterss.get(i).getSelfcharacteristic().get(1).equals(HairColor.getItemAt(HairColor.getSelectedIndex()))) {//si el character tiene la misma característica
+//                    labels.get(i).setEnabled(false);
+//                }
+//            }
         }else{
-            for (int i = 0; i< characterss.size(); i++) {                
-                if (characterss.get(i).getSelfcharacteristic().get(1).equals(HairColor.getItemAt(HairColor.getSelectedIndex()))) {//si el character tiene la misma característica
-                    labels.get(i).setEnabled(false);
-                }
-            }
+           labelAnswer.setText("NO tiene cabello color: "+HairColor.getItemAt(HairColor.getSelectedIndex()) );
         }
     }//GEN-LAST:event_HairColorActionPerformed
 
@@ -591,6 +613,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -603,6 +626,9 @@ public class GuessWhoView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel labelAnswer;
+    private javax.swing.JLabel labelChallenges;
+    private javax.swing.JLabel labelOnLine;
     // End of variables declaration//GEN-END:variables
     //jButton1 = new JButton();
     //jLabel1

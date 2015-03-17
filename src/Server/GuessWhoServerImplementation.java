@@ -335,7 +335,20 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
             }
               
         return isCharacter;
-    }      
+    }  
+    
+    @Override
+    public int SeeGame(String player) {
+        int game = -1;
+        for (int i = 0; i < games.size(); i++) {
+            if (games.get(i).getEstado().equals("Activa")) {
+                if (games.get(i).getJugador1().equals(player) || games.get(i).getJugador2().equals(player) ) {
+                    game = i;
+                }
+            }
+        }
+        return game;
+    }
     
     /*public static void main(String arg[]){
         try{
@@ -394,7 +407,6 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
             e.printStackTrace();
         }
     }*/
-
     
 }
 

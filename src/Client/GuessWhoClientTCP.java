@@ -85,6 +85,11 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
         return sendMessage("SeeTurn " + partida);
     }
     
+    @Override
+    public int SeeGame(String player) {
+        return Integer.parseInt(sendMessage("SeeGame " + player));
+    }
+    
     public String sendMessage(String message){
         try{
             out.writeUTF(message);
@@ -95,6 +100,7 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
         }
         return message;
     }
+    
     
 //    public static void main(String arg[]){
 //        try{
@@ -136,4 +142,6 @@ public class GuessWhoClientTCP implements GuessWhoInterface{
 //    
 //
 //    }
+
+    
 }
