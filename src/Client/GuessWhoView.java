@@ -140,7 +140,6 @@ public class GuessWhoView extends javax.swing.JFrame {
         LabelTurn = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         labelAnswer = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtNickName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -156,7 +155,7 @@ public class GuessWhoView extends javax.swing.JFrame {
         challengesPanel.setLayout(challengesPanelLayout);
         challengesPanelLayout.setHorizontalGroup(
             challengesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 259, Short.MAX_VALUE)
+            .addGap(0, 238, Short.MAX_VALUE)
         );
         challengesPanelLayout.setVerticalGroup(
             challengesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,16 +392,46 @@ public class GuessWhoView extends javax.swing.JFrame {
         });
 
         EyesColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Azul", "Cafe", "Naranja", "Negro", "Verde" }));
+        EyesColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EyesColorActionPerformed(evt);
+            }
+        });
 
         SkinColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Blanco", "Negro" }));
+        SkinColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SkinColorActionPerformed(evt);
+            }
+        });
 
-        Sex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hombre", "Mujer" }));
+        Sex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "male", "female" }));
+        Sex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SexActionPerformed(evt);
+            }
+        });
 
-        Glases.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
+        Glases.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "true", "false" }));
+        Glases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GlasesActionPerformed(evt);
+            }
+        });
 
-        Barb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
+        Barb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "true", "false" }));
+        Barb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BarbActionPerformed(evt);
+            }
+        });
 
-        Moustache.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
+        Moustache.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "true", "false" }));
+        Moustache.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoustacheActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Color de cabello");
 
@@ -426,13 +455,11 @@ public class GuessWhoView extends javax.swing.JFrame {
 
         jLabel13.setText("TURNO:");
 
-        LabelTurn.setText("jLabel13");
+        LabelTurn.setText("...");
 
         jLabel14.setText("RESPUESTA:");
 
-        labelAnswer.setText("jLabel15");
-
-        jLabel15.setText("jLabel15");
+        labelAnswer.setText("...");
 
         jLabel16.setText("Nick:");
 
@@ -480,38 +507,31 @@ public class GuessWhoView extends javax.swing.JFrame {
                                         .addGap(14, 14, 14)
                                         .addComponent(jLabel11))))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(132, 132, 132)
-                                .addComponent(jLabel4))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(120, 120, 120)
-                                        .addComponent(jLabel16)))
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNickName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(132, 132, 132)
+                        .addComponent(jLabel4)
                         .addGap(37, 37, 37)
+                        .addComponent(jLabel5)
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel6)
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(72, 72, 72)
-                                .addComponent(jLabel6)
-                                .addGap(55, 55, 55)
-                                .addComponent(jLabel7))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel3))
-                                .addGap(153, 153, 153)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabel16)))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNickName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(LabelTurn)
                     .addComponent(jLabel14)
                     .addComponent(labelAnswer))
-                .addGap(76, 76, 76))
+                .addGap(118, 118, 118))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,7 +541,6 @@ public class GuessWhoView extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel15)
                             .addComponent(jLabel16)
                             .addComponent(txtNickName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -530,16 +549,16 @@ public class GuessWhoView extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
-                                .addComponent(jLabel13)
-                                .addGap(5, 5, 5)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel13))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel3)))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(HairColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -603,9 +622,9 @@ public class GuessWhoView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -766,6 +785,54 @@ public class GuessWhoView extends javax.swing.JFrame {
         btnTom.setEnabled(false);
     }//GEN-LAST:event_btnTomActionPerformed
 
+    private void EyesColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EyesColorActionPerformed
+        if(GWInterface.AskCharacteristic(game, player,"eyesColor "+ EyesColor.getItemAt(EyesColor.getSelectedIndex()))){
+            labelAnswer.setText("SI tiene ojos color: "+EyesColor.getItemAt(EyesColor.getSelectedIndex()) );
+        }else{
+           labelAnswer.setText("NO tiene ojos color: "+EyesColor.getItemAt(EyesColor.getSelectedIndex()) );
+        }
+    }//GEN-LAST:event_EyesColorActionPerformed
+
+    private void SkinColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SkinColorActionPerformed
+        if(GWInterface.AskCharacteristic(game, player,"skinColor "+ SkinColor.getItemAt(SkinColor.getSelectedIndex()))){
+            labelAnswer.setText("SI tiene piel color: "+SkinColor.getItemAt(SkinColor.getSelectedIndex()) );
+        }else{
+           labelAnswer.setText("NO tiene piel color: "+SkinColor.getItemAt(SkinColor.getSelectedIndex()) );
+        }
+    }//GEN-LAST:event_SkinColorActionPerformed
+
+    private void MoustacheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoustacheActionPerformed
+       if(GWInterface.AskCharacteristic(game, player,"moustache "+ Moustache.getItemAt(Moustache.getSelectedIndex()))){
+            labelAnswer.setText("SI tiene bigote");
+        }else{
+           labelAnswer.setText("NO tiene bigote");
+        }
+    }//GEN-LAST:event_MoustacheActionPerformed
+
+    private void BarbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarbActionPerformed
+        if(GWInterface.AskCharacteristic(game, player,"barb "+ Barb.getItemAt(Barb.getSelectedIndex()))){
+            labelAnswer.setText("SI tiene barba");
+        }else{
+           labelAnswer.setText("NO tiene barba");
+        }
+    }//GEN-LAST:event_BarbActionPerformed
+
+    private void GlasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GlasesActionPerformed
+        if(GWInterface.AskCharacteristic(game, player,"glases "+ Glases.getItemAt(Glases.getSelectedIndex()))){
+            labelAnswer.setText("SI tiene gafas");
+        }else{
+           labelAnswer.setText("NO tiene gafas");
+        }
+    }//GEN-LAST:event_GlasesActionPerformed
+
+    private void SexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SexActionPerformed
+         if(GWInterface.AskCharacteristic(game, player,"sexo "+ Sex.getItemAt(Sex.getSelectedIndex()))){
+            labelAnswer.setText("SI es: "+ Sex.getItemAt(Sex.getSelectedIndex()));
+        }else{
+           labelAnswer.setText("NO es: "+ Sex.getItemAt(Sex.getSelectedIndex()));
+        }
+    }//GEN-LAST:event_SexActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -841,7 +908,6 @@ public class GuessWhoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
