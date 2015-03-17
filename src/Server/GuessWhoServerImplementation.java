@@ -155,7 +155,7 @@ public class GuessWhoServerImplementation implements GuessWhoInterface {
                             //System.out.println(""+games.get(i).getPersonaje1());randomNum2
                             games.get(i).setPersonaje2(games.get(i).getCharacters().get(0).getName());
                             //System.out.println(""+games.get(i).getPersonaje2());
-                            games.get(i).setTurno(retador);
+                            games.get(i).setTurno(retado);
                             gameIndex = i;
                             break;
                         }

@@ -25,19 +25,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel2" max="32767" attributes="0"/>
-                  <Component id="jPanel3" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel1" max="32767" attributes="0"/>
+                          <Component id="challengesPanel" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="labelOnLine" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel4" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="onLinePanel" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -55,7 +54,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnAcceptChallenge" min="-2" pref="78" max="-2" attributes="0"/>
-                      <EmptySpace pref="78" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnRejectChallenge" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
@@ -76,17 +75,14 @@
                           <Component id="btnAcceptChallenge" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="challengesPanel" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnChallenge" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelOnLine" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="onLinePanel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jPanel3" max="32767" attributes="0"/>
@@ -100,35 +96,20 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="challengesPanel">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="labelChallenges" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="259" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="labelChallenges" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelChallenges">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="..."/>
-          </Properties>
-        </Component>
-      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
 
@@ -138,86 +119,91 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="LabelAna" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelPatrick" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelCraig" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelJoe" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelRebecca" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelTom" min="-2" pref="124" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnAna" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="btnCindy" alignment="1" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnPatrick" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="btnHeater" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnCraig" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="btnEric" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnJoe" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="btnStella" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnRobert" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="btnRebecca" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnTom" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="btnSam" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="LabelCindy" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelHeather" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelEric" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelStella" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelRobert" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelSam" min="-2" pref="124" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="LabelSarah" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelGary" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelMary" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelJack" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelTheresa" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LabelLuna" min="-2" pref="124" max="-2" attributes="0"/>
+                          <Component id="btnSarah" min="-2" pref="124" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnGary" min="-2" pref="124" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnMary" min="-2" pref="124" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnJack" min="-2" pref="124" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnTheresa" min="-2" pref="124" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnLuna" min="-2" pref="124" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LabelAna" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelPatrick" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelCraig" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelJoe" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelRebecca" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelTom" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnAna" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnPatrick" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnCraig" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnJoe" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnRebecca" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnTom" alignment="0" pref="166" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LabelCindy" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelHeather" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelEric" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelStella" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelRobert" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelSam" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                      <Component id="btnCindy" pref="166" max="32767" attributes="0"/>
+                      <Component id="btnHeater" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnEric" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnStella" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnRobert" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnSam" alignment="1" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LabelSarah" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelGary" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelMary" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelJack" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelTheresa" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                      <Component id="LabelLuna" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                      <Component id="btnSarah" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnGary" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnMary" alignment="0" pref="166" max="32767" attributes="0"/>
+                      <Component id="btnJack" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnTheresa" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnLuna" alignment="1" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="LabelAna">
+        <Component class="javax.swing.JButton" name="btnAna">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Ana.png"/>
@@ -226,15 +212,24 @@
               <Image iconType="3" name="/Client/resourses/img/Ana2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelPatrick">
+        <Component class="javax.swing.JButton" name="btnPatrick">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Patrick.png"/>
             </Property>
+            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Patrick2.png"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPatrickActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelCraig">
+        <Component class="javax.swing.JButton" name="btnCraig">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Craig.png"/>
@@ -243,8 +238,11 @@
               <Image iconType="3" name="/Client/resourses/img/Craig2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCraigActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelJoe">
+        <Component class="javax.swing.JButton" name="btnJoe">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Joe.png"/>
@@ -253,8 +251,11 @@
               <Image iconType="3" name="/Client/resourses/img/Joe2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJoeActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelRebecca">
+        <Component class="javax.swing.JButton" name="btnRebecca">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Rebecca.png"/>
@@ -263,8 +264,11 @@
               <Image iconType="3" name="/Client/resourses/img/Rebecca2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRebeccaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelTom">
+        <Component class="javax.swing.JButton" name="btnTom">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Tom.png"/>
@@ -273,58 +277,11 @@
               <Image iconType="3" name="/Client/resourses/img/Tom2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTomActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelSam">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Sam.png"/>
-            </Property>
-            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Sam2.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelRobert">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Robert.png"/>
-            </Property>
-            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Robert2.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelStella">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Stella.png"/>
-            </Property>
-            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Stella2.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelEric">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Eric.png"/>
-            </Property>
-            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Eric2.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelHeather">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Heater.png"/>
-            </Property>
-            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Client/resourses/img/Heater2.png"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelCindy">
+        <Component class="javax.swing.JButton" name="btnCindy">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Cindy.png"/>
@@ -333,8 +290,76 @@
               <Image iconType="3" name="/Client/resourses/img/Cindy2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCindyActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelSarah">
+        <Component class="javax.swing.JButton" name="btnHeater">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Heater.png"/>
+            </Property>
+            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Heater2.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHeaterActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnEric">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Eric.png"/>
+            </Property>
+            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Eric2.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEricActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnStella">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Stella.png"/>
+            </Property>
+            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Stella2.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStellaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnRobert">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Robert.png"/>
+            </Property>
+            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Robert2.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRobertActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSam">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Sam.png"/>
+            </Property>
+            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Client/resourses/img/Sam2.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSamActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSarah">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Sarah.png"/>
@@ -343,8 +368,11 @@
               <Image iconType="3" name="/Client/resourses/img/Sarah2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSarahActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelGary">
+        <Component class="javax.swing.JButton" name="btnGary">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Gary.png"/>
@@ -353,8 +381,11 @@
               <Image iconType="3" name="/Client/resourses/img/Gary2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGaryActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelMary">
+        <Component class="javax.swing.JButton" name="btnMary">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Mary.png"/>
@@ -363,8 +394,11 @@
               <Image iconType="3" name="/Client/resourses/img/Mary2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaryActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelJack">
+        <Component class="javax.swing.JButton" name="btnJack">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Jack.png"/>
@@ -373,8 +407,11 @@
               <Image iconType="3" name="/Client/resourses/img/Jack2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJackActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelTheresa">
+        <Component class="javax.swing.JButton" name="btnTheresa">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Theresa.png"/>
@@ -383,8 +420,11 @@
               <Image iconType="3" name="/Client/resourses/img/Theresa2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTheresaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelLuna">
+        <Component class="javax.swing.JButton" name="btnLuna">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Client/resourses/img/Luna.png"/>
@@ -393,6 +433,9 @@
               <Image iconType="3" name="/Client/resourses/img/Luna2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLunaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -404,7 +447,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="LabelMyCharacter" min="-2" pref="117" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -446,24 +488,46 @@
                                       </Group>
                                   </Group>
                               </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="txtNickName" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="145" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                       <Component id="LabelTurn" min="-2" max="-2" attributes="0"/>
@@ -480,20 +544,32 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNickName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="LabelMyCharacter" min="-2" pref="147" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -532,7 +608,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -723,6 +799,21 @@
             <Property name="text" type="java.lang.String" value="jLabel15"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel15">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel15"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel16">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nick:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtNickName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Enter your nick"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -735,7 +826,7 @@
         <Property name="text" type="java.lang.String" value="ON LINE:"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel4">
+    <Container class="javax.swing.JPanel" name="onLinePanel">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -754,6 +845,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcceptChallengeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRejectChallenge">
       <Properties>
@@ -763,11 +857,6 @@
     <Component class="javax.swing.JButton" name="btnChallenge">
       <Properties>
         <Property name="text" type="java.lang.String" value="Retar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelOnLine">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
       </Properties>
     </Component>
   </SubComponents>

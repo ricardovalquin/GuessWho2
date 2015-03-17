@@ -49,7 +49,7 @@ public class GuessWhoClientStatesThread extends Thread implements Runnable {
                 System.out.println("Error al sincronizar los datos");
             }
             if (!online.equals("")) GWView.whoIsOnLine(online);
-            if (!challenges.equals("")) GWView.activeChallenges(challenges);
+            if (!challenges.equals("")) GWView.ChallengesToMe(challenges);
             if (!turn.equals("")) GWView.seeTurn(turn);
             
             try {

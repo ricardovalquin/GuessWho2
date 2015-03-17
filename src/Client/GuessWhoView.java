@@ -21,51 +21,69 @@ public class GuessWhoView extends javax.swing.JFrame {
 
     GuessWhoInterface GWInterface;
     GuessWhoClientStatesThread stateThread;
+    GuessWhoClientStatesThread thread;
     String answer;
-    ArrayList<JLabel> labels;
+//    ArrayList<JButton> buttons;
     String player;// when you log in your name is here
-    int game;// when you accept the challenge the game is here
+    String testPlayer;
+    int game = -1;// when you accept the challenge the game is here
+    String otherPlayers[] = null;// other players online in the game
+    String otherChallenges[] = null;
+    JLabel[] LabelsOnLinePlayers;
+    JLabel[] LabelsChallenges;
+
     /**
      * Creates new form GuessWhoView
      */
     public GuessWhoView() {
+        player = "rick";
+        testPlayer = "test";
         initComponents();
         try{
             GWInterface = new GuessWhoClientTCP("localhost", 2015);
+            GWInterface.LogIn(player);
+            GWInterface.LogIn(testPlayer);
+            GWInterface.Challenge(testPlayer, player);//create the challenge
+//            GWInterface.AskCharacteristic(0, testPlayer, "hairColor Amarillo");
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar", "Chat", JOptionPane.ERROR_MESSAGE);
         }
-        labels = new ArrayList();
-        labels.add(LabelAna);
-        labels.add(LabelPatrick);
-        labels.add(LabelCraig);
-        labels.add(LabelJoe);
-        labels.add(LabelRebecca);
-        labels.add(LabelTom);
-        labels.add(LabelCindy);
-        labels.add(LabelHeather);
-        labels.add(LabelEric);
-        labels.add(LabelStella);
-        labels.add(LabelRobert);
-        labels.add(LabelSam);
-        labels.add(LabelSarah);
-        labels.add(LabelGary);
-        labels.add(LabelMary);
-        labels.add(LabelJack);
-        labels.add(LabelTheresa);
-        labels.add(LabelLuna);
+//        buttons = new ArrayList();
+        
     }
     
     public void whoIsOnLine(String onlines){
+        otherPlayers = GWInterface.SeeOnlinePlayers().split(",");
+        LabelsOnLinePlayers = new JLabel[otherPlayers.length];
         
+        for (int i = 0; i < otherPlayers.length; i++) {
+            if (otherPlayers[i]!= null && (!otherPlayers[i].equals(player))) {
+               LabelsOnLinePlayers[i] = new JLabel();//crear label
+                //set text
+               LabelsOnLinePlayers[i].setText( otherPlayers[i]);
+                //add al panel
+               onLinePanel.add(LabelsOnLinePlayers[i]);
+            }
+        }
     }
     
-    public void activeChallenges(String challenges){
-    
+    public void ChallengesToMe(String challenges){
+        otherChallenges = GWInterface.AskByChallenges(player).split(",");
+        LabelsChallenges = new JLabel[otherChallenges.length];
+        
+        for (int i = 0; i < otherChallenges.length; i++) {
+            if (otherChallenges[i] != null) {
+                LabelsChallenges[i] = new JLabel();
+                LabelsChallenges[i].setText(otherChallenges[i]);
+                challengesPanel.add(LabelsOnLinePlayers[i]);
+
+            }
+        }
     }
     
     public void seeTurn(String trurn){
-        
+        LabelTurn.setText(GWInterface.SeeTurn(game));
     }
     
     
@@ -78,27 +96,26 @@ public class GuessWhoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        labelChallenges = new javax.swing.JLabel();
+        challengesPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        LabelAna = new javax.swing.JLabel();
-        LabelPatrick = new javax.swing.JLabel();
-        LabelCraig = new javax.swing.JLabel();
-        LabelJoe = new javax.swing.JLabel();
-        LabelRebecca = new javax.swing.JLabel();
-        LabelTom = new javax.swing.JLabel();
-        LabelSam = new javax.swing.JLabel();
-        LabelRobert = new javax.swing.JLabel();
-        LabelStella = new javax.swing.JLabel();
-        LabelEric = new javax.swing.JLabel();
-        LabelHeather = new javax.swing.JLabel();
-        LabelCindy = new javax.swing.JLabel();
-        LabelSarah = new javax.swing.JLabel();
-        LabelGary = new javax.swing.JLabel();
-        LabelMary = new javax.swing.JLabel();
-        LabelJack = new javax.swing.JLabel();
-        LabelTheresa = new javax.swing.JLabel();
-        LabelLuna = new javax.swing.JLabel();
+        btnAna = new javax.swing.JButton();
+        btnPatrick = new javax.swing.JButton();
+        btnCraig = new javax.swing.JButton();
+        btnJoe = new javax.swing.JButton();
+        btnRebecca = new javax.swing.JButton();
+        btnTom = new javax.swing.JButton();
+        btnCindy = new javax.swing.JButton();
+        btnHeater = new javax.swing.JButton();
+        btnEric = new javax.swing.JButton();
+        btnStella = new javax.swing.JButton();
+        btnRobert = new javax.swing.JButton();
+        btnSam = new javax.swing.JButton();
+        btnSarah = new javax.swing.JButton();
+        btnGary = new javax.swing.JButton();
+        btnMary = new javax.swing.JButton();
+        btnJack = new javax.swing.JButton();
+        btnTheresa = new javax.swing.JButton();
+        btnLuna = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -123,87 +140,172 @@ public class GuessWhoView extends javax.swing.JFrame {
         LabelTurn = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         labelAnswer = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtNickName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        onLinePanel = new javax.swing.JPanel();
         btnAcceptChallenge = new javax.swing.JButton();
         btnRejectChallenge = new javax.swing.JButton();
         btnChallenge = new javax.swing.JButton();
-        labelOnLine = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelChallenges.setText("...");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelChallenges)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout challengesPanelLayout = new javax.swing.GroupLayout(challengesPanel);
+        challengesPanel.setLayout(challengesPanelLayout);
+        challengesPanelLayout.setHorizontalGroup(
+            challengesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 259, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelChallenges)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        challengesPanelLayout.setVerticalGroup(
+            challengesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        LabelAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Ana.png"))); // NOI18N
-        LabelAna.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Ana2.png"))); // NOI18N
+        btnAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Ana.png"))); // NOI18N
+        btnAna.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Ana2.png"))); // NOI18N
+        btnAna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnaActionPerformed(evt);
+            }
+        });
 
-        LabelPatrick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Patrick.png"))); // NOI18N
+        btnPatrick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Patrick.png"))); // NOI18N
+        btnPatrick.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Patrick2.png"))); // NOI18N
+        btnPatrick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatrickActionPerformed(evt);
+            }
+        });
 
-        LabelCraig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Craig.png"))); // NOI18N
-        LabelCraig.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Craig2.png"))); // NOI18N
+        btnCraig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Craig.png"))); // NOI18N
+        btnCraig.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Craig2.png"))); // NOI18N
+        btnCraig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCraigActionPerformed(evt);
+            }
+        });
 
-        LabelJoe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Joe.png"))); // NOI18N
-        LabelJoe.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Joe2.png"))); // NOI18N
+        btnJoe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Joe.png"))); // NOI18N
+        btnJoe.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Joe2.png"))); // NOI18N
+        btnJoe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJoeActionPerformed(evt);
+            }
+        });
 
-        LabelRebecca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Rebecca.png"))); // NOI18N
-        LabelRebecca.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Rebecca2.png"))); // NOI18N
+        btnRebecca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Rebecca.png"))); // NOI18N
+        btnRebecca.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Rebecca2.png"))); // NOI18N
+        btnRebecca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRebeccaActionPerformed(evt);
+            }
+        });
 
-        LabelTom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Tom.png"))); // NOI18N
-        LabelTom.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Tom2.png"))); // NOI18N
+        btnTom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Tom.png"))); // NOI18N
+        btnTom.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Tom2.png"))); // NOI18N
+        btnTom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTomActionPerformed(evt);
+            }
+        });
 
-        LabelSam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sam.png"))); // NOI18N
-        LabelSam.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sam2.png"))); // NOI18N
+        btnCindy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Cindy.png"))); // NOI18N
+        btnCindy.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Cindy2.png"))); // NOI18N
+        btnCindy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCindyActionPerformed(evt);
+            }
+        });
 
-        LabelRobert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Robert.png"))); // NOI18N
-        LabelRobert.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Robert2.png"))); // NOI18N
+        btnHeater.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Heater.png"))); // NOI18N
+        btnHeater.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Heater2.png"))); // NOI18N
+        btnHeater.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHeaterActionPerformed(evt);
+            }
+        });
 
-        LabelStella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Stella.png"))); // NOI18N
-        LabelStella.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Stella2.png"))); // NOI18N
+        btnEric.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Eric.png"))); // NOI18N
+        btnEric.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Eric2.png"))); // NOI18N
+        btnEric.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEricActionPerformed(evt);
+            }
+        });
 
-        LabelEric.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Eric.png"))); // NOI18N
-        LabelEric.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Eric2.png"))); // NOI18N
+        btnStella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Stella.png"))); // NOI18N
+        btnStella.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Stella2.png"))); // NOI18N
+        btnStella.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStellaActionPerformed(evt);
+            }
+        });
 
-        LabelHeather.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Heater.png"))); // NOI18N
-        LabelHeather.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Heater2.png"))); // NOI18N
+        btnRobert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Robert.png"))); // NOI18N
+        btnRobert.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Robert2.png"))); // NOI18N
+        btnRobert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRobertActionPerformed(evt);
+            }
+        });
 
-        LabelCindy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Cindy.png"))); // NOI18N
-        LabelCindy.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Cindy2.png"))); // NOI18N
+        btnSam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sam.png"))); // NOI18N
+        btnSam.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sam2.png"))); // NOI18N
+        btnSam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSamActionPerformed(evt);
+            }
+        });
 
-        LabelSarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sarah.png"))); // NOI18N
-        LabelSarah.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sarah2.png"))); // NOI18N
+        btnSarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sarah.png"))); // NOI18N
+        btnSarah.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Sarah2.png"))); // NOI18N
+        btnSarah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSarahActionPerformed(evt);
+            }
+        });
 
-        LabelGary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Gary.png"))); // NOI18N
-        LabelGary.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Gary2.png"))); // NOI18N
+        btnGary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Gary.png"))); // NOI18N
+        btnGary.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Gary2.png"))); // NOI18N
+        btnGary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGaryActionPerformed(evt);
+            }
+        });
 
-        LabelMary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Mary.png"))); // NOI18N
-        LabelMary.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Mary2.png"))); // NOI18N
+        btnMary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Mary.png"))); // NOI18N
+        btnMary.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Mary2.png"))); // NOI18N
+        btnMary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaryActionPerformed(evt);
+            }
+        });
 
-        LabelJack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Jack.png"))); // NOI18N
-        LabelJack.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Jack2.png"))); // NOI18N
+        btnJack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Jack.png"))); // NOI18N
+        btnJack.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Jack2.png"))); // NOI18N
+        btnJack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJackActionPerformed(evt);
+            }
+        });
 
-        LabelTheresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Theresa.png"))); // NOI18N
-        LabelTheresa.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Theresa2.png"))); // NOI18N
+        btnTheresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Theresa.png"))); // NOI18N
+        btnTheresa.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Theresa2.png"))); // NOI18N
+        btnTheresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTheresaActionPerformed(evt);
+            }
+        });
 
-        LabelLuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Luna.png"))); // NOI18N
-        LabelLuna.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Luna2.png"))); // NOI18N
+        btnLuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Luna.png"))); // NOI18N
+        btnLuna.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Luna2.png"))); // NOI18N
+        btnLuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLunaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -213,70 +315,70 @@ public class GuessWhoView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(LabelAna, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelPatrick, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelCraig, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelJoe, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelRebecca, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelTom, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAna, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCindy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPatrick, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHeater, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCraig, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEric, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnJoe, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnStella, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRobert, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRebecca, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTom, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSam, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(LabelCindy, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelHeather, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelEric, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelStella, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelRobert, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelSam, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(LabelSarah, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelGary, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelMary, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelJack, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelTheresa, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelLuna, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(btnSarah, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGary, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMary, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnJack, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTheresa, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLuna, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelAna, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelPatrick, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelCraig, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelJoe, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelRebecca, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelTom, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAna, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnPatrick, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnCraig, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnJoe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnRebecca, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnTom, javax.swing.GroupLayout.PREFERRED_SIZE, 166, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelCindy, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelHeather, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelEric, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelStella, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelRobert, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelSam, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(btnCindy, javax.swing.GroupLayout.PREFERRED_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(btnHeater, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnEric, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnStella, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnRobert, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnSam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelSarah, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelGary, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelMary, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelJack, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelTheresa, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelLuna, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSarah, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnGary, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnMary, javax.swing.GroupLayout.PREFERRED_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(btnJack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnTheresa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnLuna, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel2.setText("My character");
@@ -330,6 +432,12 @@ public class GuessWhoView extends javax.swing.JFrame {
 
         labelAnswer.setText("jLabel15");
 
+        jLabel15.setText("jLabel15");
+
+        jLabel16.setText("Nick:");
+
+        txtNickName.setText("Enter your nick");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -337,7 +445,6 @@ public class GuessWhoView extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(LabelMyCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
@@ -371,19 +478,34 @@ public class GuessWhoView extends javax.swing.JFrame {
                                     .addComponent(AskCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(14, 14, 14)
-                                        .addComponent(jLabel11))))
+                                        .addComponent(jLabel11))))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(50, 50, 50)
+                                .addGap(132, 132, 132)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(72, 72, 72)
-                                        .addComponent(jLabel6)
-                                        .addGap(55, 55, 55)
-                                        .addComponent(jLabel7))
-                                    .addComponent(jLabel3))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(120, 120, 120)
+                                        .addComponent(jLabel16)))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNickName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel6)
+                                .addGap(55, 55, 55)
+                                .addComponent(jLabel7))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel3))
+                                .addGap(153, 153, 153)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(LabelTurn)
@@ -397,19 +519,27 @@ public class GuessWhoView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16)
+                            .addComponent(txtNickName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(LabelMyCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel13)
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel13)
+                                .addGap(5, 5, 5)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(HairColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -437,31 +567,34 @@ public class GuessWhoView extends javax.swing.JFrame {
                                     .addComponent(Barb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Glases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Sex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setText("RETOS:");
 
         jLabel12.setText("ON LINE:");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout onLinePanelLayout = new javax.swing.GroupLayout(onLinePanel);
+        onLinePanel.setLayout(onLinePanelLayout);
+        onLinePanelLayout.setHorizontalGroup(
+            onLinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        onLinePanelLayout.setVerticalGroup(
+            onLinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 359, Short.MAX_VALUE)
         );
 
         btnAcceptChallenge.setText("Aceptar");
+        btnAcceptChallenge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptChallengeActionPerformed(evt);
+            }
+        });
 
         btnRejectChallenge.setText("Rechazar");
 
         btnChallenge.setText("Retar");
-
-        labelOnLine.setText("...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -469,18 +602,17 @@ public class GuessWhoView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(challengesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelOnLine)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(24, 24, 24)
+                                .addComponent(onLinePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -492,7 +624,7 @@ public class GuessWhoView extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAcceptChallenge, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRejectChallenge)
                         .addGap(39, 39, 39))))
         );
@@ -508,15 +640,13 @@ public class GuessWhoView extends javax.swing.JFrame {
                             .addComponent(btnRejectChallenge)
                             .addComponent(btnAcceptChallenge))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(challengesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(btnChallenge))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelOnLine)))
+                        .addComponent(onLinePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -539,6 +669,102 @@ public class GuessWhoView extends javax.swing.JFrame {
            labelAnswer.setText("NO tiene cabello color: "+HairColor.getItemAt(HairColor.getSelectedIndex()) );
         }
     }//GEN-LAST:event_HairColorActionPerformed
+
+    private void btnAcceptChallengeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptChallengeActionPerformed
+            // tomar el seleccionado del panel retos
+            // tomar el nick
+            //player = txtNickName.getText();
+            try{
+                thread = new GuessWhoClientStatesThread(this, GWInterface, player, game);
+                thread.start();
+                game = GWInterface.AnswerChallenges(player, testPlayer, "Aceptar");
+                txtNickName.setText(player);
+                txtNickName.setEditable(false);
+                btnAcceptChallenge.setEnabled(false);
+                btnRejectChallenge.setEnabled(false);
+                btnChallenge.setEnabled(false);
+                
+                System.out.println("character of player: "+GWInterface.SeeCharacter(game, player));
+                System.out.println("character of test: "+GWInterface.SeeCharacter(game, testPlayer));
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+//iniciar el hilo
+            
+    }//GEN-LAST:event_btnAcceptChallengeActionPerformed
+
+    private void btnAnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnaActionPerformed
+        btnAna.setEnabled(false);
+    }//GEN-LAST:event_btnAnaActionPerformed
+
+    private void btnCindyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCindyActionPerformed
+        btnCindy.setEnabled(false);
+    }//GEN-LAST:event_btnCindyActionPerformed
+
+    private void btnHeaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeaterActionPerformed
+        btnHeater.setEnabled(false);
+    }//GEN-LAST:event_btnHeaterActionPerformed
+
+    private void btnEricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEricActionPerformed
+        btnEric.setEnabled(false);
+    }//GEN-LAST:event_btnEricActionPerformed
+
+    private void btnStellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStellaActionPerformed
+        btnStella.setEnabled(false);
+    }//GEN-LAST:event_btnStellaActionPerformed
+
+    private void btnRobertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRobertActionPerformed
+        btnRobert.setEnabled(false);
+    }//GEN-LAST:event_btnRobertActionPerformed
+
+    private void btnSamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSamActionPerformed
+       btnSam.setEnabled(false);
+    }//GEN-LAST:event_btnSamActionPerformed
+
+    private void btnSarahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSarahActionPerformed
+        btnSarah.setEnabled(false);
+    }//GEN-LAST:event_btnSarahActionPerformed
+
+    private void btnGaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaryActionPerformed
+        btnGary.setEnabled(false);
+    }//GEN-LAST:event_btnGaryActionPerformed
+
+    private void btnMaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaryActionPerformed
+        btnMary.setEnabled(false);
+    }//GEN-LAST:event_btnMaryActionPerformed
+
+    private void btnJackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJackActionPerformed
+        btnJack.setEnabled(false);
+    }//GEN-LAST:event_btnJackActionPerformed
+
+    private void btnTheresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTheresaActionPerformed
+        btnTheresa.setEnabled(false);
+    }//GEN-LAST:event_btnTheresaActionPerformed
+
+    private void btnLunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLunaActionPerformed
+        btnLuna.setEnabled(false);
+    }//GEN-LAST:event_btnLunaActionPerformed
+
+    private void btnCraigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCraigActionPerformed
+        btnCraig.setEnabled(false);
+    }//GEN-LAST:event_btnCraigActionPerformed
+
+    private void btnPatrickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatrickActionPerformed
+        btnPatrick.setEnabled(false);
+    }//GEN-LAST:event_btnPatrickActionPerformed
+
+    private void btnJoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoeActionPerformed
+        btnJoe.setEnabled(false);
+    }//GEN-LAST:event_btnJoeActionPerformed
+
+    private void btnRebeccaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRebeccaActionPerformed
+        btnRebecca.setEnabled(false);
+    }//GEN-LAST:event_btnRebeccaActionPerformed
+
+    private void btnTomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTomActionPerformed
+        btnTom.setEnabled(false);
+    }//GEN-LAST:event_btnTomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -582,38 +808,41 @@ public class GuessWhoView extends javax.swing.JFrame {
     private javax.swing.JComboBox EyesColor;
     private javax.swing.JComboBox Glases;
     private javax.swing.JComboBox HairColor;
-    private javax.swing.JLabel LabelAna;
-    private javax.swing.JLabel LabelCindy;
-    private javax.swing.JLabel LabelCraig;
-    private javax.swing.JLabel LabelEric;
-    private javax.swing.JLabel LabelGary;
-    private javax.swing.JLabel LabelHeather;
-    private javax.swing.JLabel LabelJack;
-    private javax.swing.JLabel LabelJoe;
-    private javax.swing.JLabel LabelLuna;
-    private javax.swing.JLabel LabelMary;
     private javax.swing.JLabel LabelMyCharacter;
-    private javax.swing.JLabel LabelPatrick;
-    private javax.swing.JLabel LabelRebecca;
-    private javax.swing.JLabel LabelRobert;
-    private javax.swing.JLabel LabelSam;
-    private javax.swing.JLabel LabelSarah;
-    private javax.swing.JLabel LabelStella;
-    private javax.swing.JLabel LabelTheresa;
-    private javax.swing.JLabel LabelTom;
     private javax.swing.JLabel LabelTurn;
     private javax.swing.JComboBox Moustache;
     private javax.swing.JComboBox Sex;
     private javax.swing.JComboBox SkinColor;
     private javax.swing.JButton btnAcceptChallenge;
+    private javax.swing.JButton btnAna;
     private javax.swing.JButton btnChallenge;
+    private javax.swing.JButton btnCindy;
+    private javax.swing.JButton btnCraig;
+    private javax.swing.JButton btnEric;
+    private javax.swing.JButton btnGary;
+    private javax.swing.JButton btnHeater;
+    private javax.swing.JButton btnJack;
+    private javax.swing.JButton btnJoe;
+    private javax.swing.JButton btnLuna;
+    private javax.swing.JButton btnMary;
+    private javax.swing.JButton btnPatrick;
+    private javax.swing.JButton btnRebecca;
     private javax.swing.JButton btnRejectChallenge;
+    private javax.swing.JButton btnRobert;
+    private javax.swing.JButton btnSam;
+    private javax.swing.JButton btnSarah;
+    private javax.swing.JButton btnStella;
+    private javax.swing.JButton btnTheresa;
+    private javax.swing.JButton btnTom;
+    private javax.swing.JPanel challengesPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -622,13 +851,11 @@ public class GuessWhoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel labelAnswer;
-    private javax.swing.JLabel labelChallenges;
-    private javax.swing.JLabel labelOnLine;
+    private javax.swing.JPanel onLinePanel;
+    private javax.swing.JTextField txtNickName;
     // End of variables declaration//GEN-END:variables
     //jButton1 = new JButton();
     //jLabel1
