@@ -76,10 +76,11 @@ public class GuessWhoView extends javax.swing.JFrame {
             if (otherChallenges[i] != null) {
                 LabelsChallenges[i] = new JLabel();
                 LabelsChallenges[i].setText(otherChallenges[i]);
+                LabelsChallenges[i].setVisible(true);
                 challengesPanel.add(LabelsOnLinePlayers[i]);
-
             }
         }
+        challengesPanel.setVisible(true);
     }
     
     public void seeTurn(String trurn){
@@ -133,7 +134,7 @@ public class GuessWhoView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        AskCharacter = new javax.swing.JComboBox();
+        askCharacterChooser = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         LabelMyCharacter = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -447,7 +448,12 @@ public class GuessWhoView extends javax.swing.JFrame {
 
         jLabel10.setText("Sexo");
 
-        AskCharacter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ana", "Patrick", "Craig", "Joe", "Rebecca", "Tom", "Cindy", "Heather", "Eric", "Stella", "Robert", "Sam", "Sarah", "Gray", "Mary", "Jack", "Theresa", "Luna", " " }));
+        askCharacterChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ana", "Patrick", "Craig", "Joe", "Rebecca", "Tom", "Cindy", "Heather", "Eric", "Stella", "Robert", "Sam", "Sarah", "Gray", "Mary", "Jack", "Theresa", "Luna", " " }));
+        askCharacterChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                askCharacterChooserActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Personaje");
 
@@ -502,7 +508,7 @@ public class GuessWhoView extends javax.swing.JFrame {
                                         .addComponent(jLabel10)
                                         .addGap(64, 64, 64)))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AskCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(askCharacterChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(14, 14, 14)
                                         .addComponent(jLabel11))))))
@@ -574,7 +580,7 @@ public class GuessWhoView extends javax.swing.JFrame {
                                     .addComponent(jLabel14))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(AskCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(askCharacterChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelAnswer)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -833,6 +839,14 @@ public class GuessWhoView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SexActionPerformed
 
+    private void askCharacterChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_askCharacterChooserActionPerformed
+        String characterChoosed = ""+ askCharacterChooser.getItemAt(askCharacterChooser.getSelectedIndex());
+        System.out.println("verificando el pj escogido: "+characterChoosed);
+        if (GWInterface.AskCharacter(game, player, characterChoosed)) {
+            labelAnswer.setText("ganadorasdf");
+        }
+    }//GEN-LAST:event_askCharacterChooserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -870,7 +884,6 @@ public class GuessWhoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox AskCharacter;
     private javax.swing.JComboBox Barb;
     private javax.swing.JComboBox EyesColor;
     private javax.swing.JComboBox Glases;
@@ -880,6 +893,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     private javax.swing.JComboBox Moustache;
     private javax.swing.JComboBox Sex;
     private javax.swing.JComboBox SkinColor;
+    private javax.swing.JComboBox askCharacterChooser;
     private javax.swing.JButton btnAcceptChallenge;
     private javax.swing.JButton btnAna;
     private javax.swing.JButton btnChallenge;
