@@ -40,11 +40,19 @@ public class GuessWhoView extends javax.swing.JFrame {
         testPlayer = "test";
         initComponents();
         try{
+            
+            
             GWInterface = new GuessWhoClientTCP("localhost", 2015);
             GWInterface.LogIn(player);
             GWInterface.LogIn(testPlayer);
             GWInterface.Challenge(testPlayer, player);//create the challenge
 //            GWInterface.AskCharacteristic(0, testPlayer, "hairColor Amarillo");
+            
+             thread = new GuessWhoClientStatesThread(this, GWInterface, player, game);
+                thread.start();
+//                game = GWInterface.AnswerChallenges(player, testPlayer, "Aceptar");
+            
+            
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar", "Chat", JOptionPane.ERROR_MESSAGE);
@@ -71,6 +79,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     public void ChallengesToMe(String challenges){
         otherChallenges = GWInterface.AskByChallenges(player).split(",");
         LabelsChallenges = new JLabel[otherChallenges.length];
+        labelRetos.setText(challenges);
         
         for (int i = 0; i < otherChallenges.length; i++) {
             if (otherChallenges[i] != null) {
@@ -98,6 +107,8 @@ public class GuessWhoView extends javax.swing.JFrame {
     private void initComponents() {
 
         challengesPanel = new javax.swing.JPanel();
+        labelRetos = new javax.swing.JLabel();
+        ComboChallenges = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         btnAna = new javax.swing.JButton();
         btnPatrick = new javax.swing.JButton();
@@ -146,21 +157,38 @@ public class GuessWhoView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         onLinePanel = new javax.swing.JPanel();
+        ComboOnLines = new javax.swing.JComboBox();
         btnAcceptChallenge = new javax.swing.JButton();
         btnRejectChallenge = new javax.swing.JButton();
         btnChallenge = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        labelRetos.setText("jLabel15");
+
+        ComboChallenges.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout challengesPanelLayout = new javax.swing.GroupLayout(challengesPanel);
         challengesPanel.setLayout(challengesPanelLayout);
         challengesPanelLayout.setHorizontalGroup(
             challengesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGroup(challengesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelRetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(challengesPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(ComboChallenges, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         challengesPanelLayout.setVerticalGroup(
             challengesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(challengesPanelLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(labelRetos)
+                .addGap(18, 18, 18)
+                .addComponent(ComboChallenges, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Client/resourses/img/Ana.png"))); // NOI18N
@@ -599,15 +627,22 @@ public class GuessWhoView extends javax.swing.JFrame {
 
         jLabel12.setText("ON LINE:");
 
+        ComboOnLines.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout onLinePanelLayout = new javax.swing.GroupLayout(onLinePanel);
         onLinePanel.setLayout(onLinePanelLayout);
         onLinePanelLayout.setHorizontalGroup(
             onLinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(onLinePanelLayout.createSequentialGroup()
+                .addComponent(ComboOnLines, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         onLinePanelLayout.setVerticalGroup(
             onLinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
+            .addGroup(onLinePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ComboOnLines, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(320, Short.MAX_VALUE))
         );
 
         btnAcceptChallenge.setText("Aceptar");
@@ -649,7 +684,7 @@ public class GuessWhoView extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAcceptChallenge, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(btnRejectChallenge)
                         .addGap(39, 39, 39))))
         );
@@ -700,9 +735,9 @@ public class GuessWhoView extends javax.swing.JFrame {
             // tomar el nick
             //player = txtNickName.getText();
             try{
-                thread = new GuessWhoClientStatesThread(this, GWInterface, player, game);
-                thread.start();
-                game = GWInterface.AnswerChallenges(player, testPlayer, "Aceptar");
+//                thread = new GuessWhoClientStatesThread(this, GWInterface, player, game);
+//                thread.start();
+//                game = GWInterface.AnswerChallenges(player, testPlayer, "Aceptar");
                 txtNickName.setText(player);
                 txtNickName.setEditable(false);
                 btnAcceptChallenge.setEnabled(false);
@@ -885,6 +920,8 @@ public class GuessWhoView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Barb;
+    private javax.swing.JComboBox ComboChallenges;
+    private javax.swing.JComboBox ComboOnLines;
     private javax.swing.JComboBox EyesColor;
     private javax.swing.JComboBox Glases;
     private javax.swing.JComboBox HairColor;
@@ -934,6 +971,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelAnswer;
+    private javax.swing.JLabel labelRetos;
     private javax.swing.JPanel onLinePanel;
     private javax.swing.JTextField txtNickName;
     // End of variables declaration//GEN-END:variables

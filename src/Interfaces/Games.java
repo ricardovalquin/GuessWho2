@@ -37,7 +37,7 @@ public class Games {
 
         // each game have a new array of characters
         characters = new ArrayList();
-        Characters character;                    
+        Characters character;                    //nombre colorCabello  color de ojos piel  barba   bigore  gafas       sexo            
         characters.add(character = new Characters("Ana", "Amarillo", "Verde", "Blanco", "false", "false", "false", "female"));
         characters.add(character = new Characters("Patrick", "Naranja", "Cafe", "Blanco", "true", "true", "false", "male"));
         characters.add(character = new Characters("Craig", "Negro", "Cafe", "Negro", "true", "false", "false", "male"));
