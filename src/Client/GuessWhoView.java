@@ -65,14 +65,14 @@ public class GuessWhoView extends javax.swing.JFrame {
     public void whoIsOnLine(String onlines){
         otherPlayers = GWInterface.SeeOnlinePlayers().split(",");
         LabelsOnLinePlayers = new JLabel[otherPlayers.length];
-        
+        ComboOnLines.addItem(otherPlayers[0]);
+
         for (int i = 0; i < otherPlayers.length; i++) {
             if (otherPlayers[i]!= null && (!otherPlayers[i].equals(player))) {
-               LabelsOnLinePlayers[i] = new JLabel();//crear label
-                //set text
-               LabelsOnLinePlayers[i].setText( otherPlayers[i]);
-                //add al panel
-               onLinePanel.add(LabelsOnLinePlayers[i]);
+               ComboOnLines.addItem(otherPlayers[i]);
+//                LabelsOnLinePlayers[i] = new JLabel();//crear label
+//               LabelsOnLinePlayers[i].setText( otherPlayers[i]);
+//               onLinePanel.add(LabelsOnLinePlayers[i]);
             }
         }
     }
@@ -80,15 +80,20 @@ public class GuessWhoView extends javax.swing.JFrame {
     public void ChallengesToMe(String challenges){
         otherChallenges = GWInterface.AskByChallenges(player).split(",");
         LabelsChallenges = new JLabel[otherChallenges.length];
+        ComboChallenges.addItem(otherChallenges[0]);
+        //ComboChallenges.addItem(otherChallenges[1]);
+
         
         for (int i = 0; i < otherChallenges.length; i++) {
             if (otherChallenges[i] != null) {
+                if((ComboChallenges.getItemAt(i)!=null)&& (!ComboChallenges.getItemAt(i).toString().equals(otherChallenges[i]))){
                 labelRetos.setText(challenges);
                 ComboChallenges.addItem(otherChallenges[i]);
 //                LabelsChallenges[i] = new JLabel();
 //                LabelsChallenges[i].setText(otherChallenges[i]);
 //                LabelsChallenges[i].setVisible(true);
 //                challengesPanel.add(LabelsOnLinePlayers[i]);
+                }
             }
         }
         challengesPanel.setVisible(true);
@@ -632,8 +637,6 @@ public class GuessWhoView extends javax.swing.JFrame {
         jLabel1.setText("RETOS:");
 
         jLabel12.setText("ON LINE:");
-
-        ComboOnLines.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout onLinePanelLayout = new javax.swing.GroupLayout(onLinePanel);
         onLinePanel.setLayout(onLinePanelLayout);
