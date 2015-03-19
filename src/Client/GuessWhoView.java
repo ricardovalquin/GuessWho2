@@ -25,6 +25,7 @@ public class GuessWhoView extends javax.swing.JFrame {
     String answer;
 //    ArrayList<JButton> buttons;
     String player;// when you log in your name is here
+    String defiant;
     String testPlayer;
     int game = -1;// when you accept the challenge the game is here
     String otherPlayers[] = null;// other players online in the game
@@ -47,9 +48,9 @@ public class GuessWhoView extends javax.swing.JFrame {
             GWInterface.LogIn(testPlayer);
             GWInterface.Challenge(testPlayer, player);//create the challenge
 //            GWInterface.AskCharacteristic(0, testPlayer, "hairColor Amarillo");
-            
-             thread = new GuessWhoClientStatesThread(this, GWInterface, player, game);
-                thread.start();
+            btnAcceptChallenge.setEnabled(false);                           
+            thread = new GuessWhoClientStatesThread(this, GWInterface, player, game);
+            thread.start();
 //                game = GWInterface.AnswerChallenges(player, testPlayer, "Aceptar");
             
             
@@ -79,14 +80,15 @@ public class GuessWhoView extends javax.swing.JFrame {
     public void ChallengesToMe(String challenges){
         otherChallenges = GWInterface.AskByChallenges(player).split(",");
         LabelsChallenges = new JLabel[otherChallenges.length];
-        labelRetos.setText(challenges);
         
         for (int i = 0; i < otherChallenges.length; i++) {
             if (otherChallenges[i] != null) {
-                LabelsChallenges[i] = new JLabel();
-                LabelsChallenges[i].setText(otherChallenges[i]);
-                LabelsChallenges[i].setVisible(true);
-                challengesPanel.add(LabelsOnLinePlayers[i]);
+                labelRetos.setText(challenges);
+                ComboChallenges.addItem(otherChallenges[i]);
+//                LabelsChallenges[i] = new JLabel();
+//                LabelsChallenges[i].setText(otherChallenges[i]);
+//                LabelsChallenges[i].setVisible(true);
+//                challengesPanel.add(LabelsOnLinePlayers[i]);
             }
         }
         challengesPanel.setVisible(true);
@@ -166,7 +168,11 @@ public class GuessWhoView extends javax.swing.JFrame {
 
         labelRetos.setText("jLabel15");
 
-        ComboChallenges.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboChallenges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboChallengesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout challengesPanelLayout = new javax.swing.GroupLayout(challengesPanel);
         challengesPanel.setLayout(challengesPanelLayout);
@@ -734,6 +740,7 @@ public class GuessWhoView extends javax.swing.JFrame {
             // tomar el seleccionado del panel retos
             // tomar el nick
             //player = txtNickName.getText();
+            
             try{
 //                thread = new GuessWhoClientStatesThread(this, GWInterface, player, game);
 //                thread.start();
@@ -743,7 +750,8 @@ public class GuessWhoView extends javax.swing.JFrame {
                 btnAcceptChallenge.setEnabled(false);
                 btnRejectChallenge.setEnabled(false);
                 btnChallenge.setEnabled(false);
-                
+                game = thread.GWInterface.AnswerChallenges(player, defiant, "Aceptar");
+
                 System.out.println("character of player: "+GWInterface.SeeCharacter(game, player));
                 System.out.println("character of test: "+GWInterface.SeeCharacter(game, testPlayer));
                 
@@ -881,6 +889,11 @@ public class GuessWhoView extends javax.swing.JFrame {
             labelAnswer.setText("ganadorasdf");
         }
     }//GEN-LAST:event_askCharacterChooserActionPerformed
+
+    private void ComboChallengesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboChallengesActionPerformed
+        defiant = ComboChallenges.getSelectedItem().toString();
+        btnAcceptChallenge.setEnabled(true);
+    }//GEN-LAST:event_ComboChallengesActionPerformed
 
     /**
      * @param args the command line arguments
